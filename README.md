@@ -1,6 +1,7 @@
 # Vision Analysis CLI
 
 图片分析命令行工具，使用 OpenAI 兼容的视觉模型 API 分析图片内容。
+使纯文本模型能够理解图片
 
 ## 功能
 
