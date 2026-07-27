@@ -7,11 +7,12 @@ import base64
 import mimetypes
 import re
 from pathlib import Path
-from typing import Optional
+from typing import Annotated, Optional
 from urllib.parse import urlparse
 
 import requests
 from mcp.server.fastmcp import FastMCP
+from pydantic import Field
 
 from .config import load_config
 from .exceptions import APIError, ConfigurationError, ImageError
@@ -266,16 +267,27 @@ def call_vision_api(
 
 
 @mcp.tool()
-def image_analysis(image: str, prompt: str) -> str:
+def image_analysis(
+    image: Annotated[
+        str,
+        Field(
+            description=(
+                "要分析的图片，支持以下四种格式之一："
+                "1) 本地文件路径（绝对路径或相对路径）；"
+                "2) 图片 URL（以 http:// 或 https:// 开头）；"
+                "3) base64 编码字符串（不带 data: 前缀）；"
+                "4) data URL，形如 data:image/<mime>;base64,<data>。"
+            ),
+        ),
+    ],
+    prompt: Annotated[
+        str,
+        Field(
+            description="分析提示词，描述你希望从图片中获取的信息或执行的任务。",
+        ),
+    ],
+) -> str:
     """分析图片并返回描述
-
-    Args:
-        image: 图片，支持以下格式：
-            - 本地文件路径（绝对路径或相对路径）
-            - 图片 URL（http/https）
-            - base64 编码字符串
-            - data URL（data:image/...;base64,...）
-        prompt: 分析提示词，描述你想要从图片中获取什么信息
 
     Returns:
         图片的描述文本
