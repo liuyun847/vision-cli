@@ -1,6 +1,6 @@
 # MCP Vision OpenAI
 
-支持 OpenAI 兼容格式的图片描述 MCP 工具。
+为纯文本模型提供图片理解能力，通过 MCP 协议调用 OpenAI 兼容的视觉模型 API，让不支持多模态的 AI 助手也能"看懂"图片。
 
 ## 功能
 
