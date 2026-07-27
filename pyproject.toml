@@ -1,0 +1,21 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mcp-vision-openai"
+version = "0.1.0"
+description = "MCP server for image analysis using OpenAI-compatible vision models"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+dependencies = [
+    "mcp>=1.0.0",
+    "requests>=2.28.0",
+]
+
+[project.scripts]
+mcp-vision-openai = "mcp_vision_openai.server:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/mcp_vision_openai"]
