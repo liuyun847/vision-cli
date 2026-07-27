@@ -11,7 +11,7 @@
 ## 安装
 
 ```bash
-uv pip install -e .
+uv pip install .
 ```
 
 ## 配置

@@ -16,6 +16,9 @@ venv/
 *.swp
 *.swo
 
+# 锁文件（库项目不提交）
+uv.lock
+
 # 系统
 .DS_Store
 Thumbs.db
